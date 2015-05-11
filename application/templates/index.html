@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="static/css/main.css">
+        <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAlKWprO3ovys6MzjsbMABBPZbQ5i6C_lg"></script>
+        
+        <title>Guided Parafoil System Dashboard</title>
+    </head>
+    <body>
+
+        <header>
+            <img id = "nasalogo" src="static/nasa-logo.svg" alt="">
+            <h1 id = "title">GPS Dashboard</h1>
+            <img id="vandallogo" src="static/vandal_logo.jpg" alt="">
+        </header>
+        <div id="main-container">
+            <input type="hidden" name="msgnum" id="msgnum" value="-1">
+            {% if time %}
+            <h3>Time Last Received: <span id="time">{{ time }} </span> PST</h3>
+            {% else %}
+            <h3>Time Last Received: <span id="time">N/A </span></h3>
+            {% endif %}
+            <!-- End of Time -->
+            <h4>Cutdown Status: <span id="cd-stat">Not Cutdown</span></h4>
+            {% if sats %}
+            <h4>Number of Satellites: <span id="sats-val">{{ sats }}</span></h4>
+            {% else %}
+            <h4>Number of Satellites: <span id="sats-val">{{ sats }}</span></h4>
+            {% endif %}
+            <!-- End of Satellites -->
+            <div id="gauges">
+                <div id="altitude">
+                    {% if alt %}
+                    <h4>Altitude: <span id="altitude-val">{{ alt }}</span> m</h4>
+                    {% else %}
+                    <h4>Altitude: <span id="altitude-val">{{ alt }}</span> m</h4>
+                    {% endif %}
+                </div>
+                <div id="temperature">
+                    {% if temp %}
+                    <h4>Temperature: <span id="temp-val">{{ temp }} </span>&deg; C</h4>
+                    {% else %}
+                    <h4>Temperature: <span id="temp-val">{{ temp }} </span>&deg; C</h4>
+                    {% endif %}
+                </div>    
+                <div id="pressure">
+                    {% if temp %}
+                    <h4>Pressure: <span id="pres-val">{{ pressure }} </span> mbars</h4>
+                    {% else %}
+                    <h4>Pressure: <span id="pres-val">{{ pressure }} </span> mbars</h4>
+                    {% endif %}
+                </div>    
+            </div>
+            
+            {% if latitude and longitude %}
+            <h3>GPS Coordinates: <span id="lat-val">{{ latitude }}</span>, <span id="long-val">{{ longitude }}</span></h3> 
+            {% else %}
+            <h3>GPS Coordinates: <span id="lat-val">{{ latitude }}</span>, <span id="long-val">{{ longitude }}</span></h3> 
+            {% endif %}
+            
+            <div id="map-canvas">
+            </div>
+           
+        </div> <!--main-container-->
+
+        <script src="static/js/vendor/jquery-1.11.1.min.js"></script>
+        <script src="https://wzrd.in/standalone/d3-gauge"></script>
+        <script src="https://wzrd.in/standalone/xtend"></script>
+        <script src="static/js/d3gauge.js"></script>
+        <script src="static/js/main.js"></script>
+    </body>
+</html>
